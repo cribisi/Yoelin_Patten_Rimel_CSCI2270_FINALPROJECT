@@ -1,6 +1,5 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
-#include "GameBoard.h"
 
 class Player{
 
@@ -16,7 +15,7 @@ class Player{
 		void updateExp();
 		void levelUp();
 		void attack();
-		void updateHealth;
+		void updateHealth();
 		void isDead();
 
 

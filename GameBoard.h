@@ -15,12 +15,12 @@ class GameBoard{
 		node(int node_id){
 			visited = false;
 			exp = 1;
-			left = NULL;
-			right = NULL;
-			parent = NULL;
+			left = nullptr;
+			right = nullptr;
+			parent = nullptr;
 			nodeID = node_id;
 		}
-	}
+	};
 
 	private:
 		node* head;
@@ -31,7 +31,7 @@ class GameBoard{
 		~GameBoard();
 		void traverse(int i);
 		bool isLeaf(node*);
-		void bossEncounter(int bossHealth,Player* p);
+		void bossEncounter(int bossHealth, Player p );
 		void randDungeonInitalization(int dungeonLenght, int maxID_Size);
 		
 
