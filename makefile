@@ -1,4 +1,4 @@
-all: DungeonsOfTheCursed
+all: DungeonsOfTheCursed clean
 
 DungeonsOfTheCursed: DungeonsMain.o GameBoard.o Player.o
 	g++ -std=c++11 DungeonsMain.o GameBoard.o Player.o -o DungeonsOfTheCursed_EXE
