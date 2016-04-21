@@ -3,16 +3,18 @@
 
 class Player{
 
+//added a node pointer
 
 	private:
 		int* expBar;
 		int* health;
+		node* current;
 	protected:	
 	public:
 		Player();
 		~Player();
 		void initExpBar(int init_size);
-		void updateExp();
+		void updateExp(GameBoard* board);
 		void levelUp();
 		void attack();
 		void updateHealth();
