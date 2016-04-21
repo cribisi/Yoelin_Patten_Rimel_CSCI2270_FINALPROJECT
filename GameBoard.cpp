@@ -222,21 +222,42 @@ void GameBoard::explicitInitialization()
 	  cout<<"Enter L for left, R for right or U for up"<<endl;
 	  cin>>direction;
 	  
+	  while(direction!="L" || direction!="R" || direction!="U"){
+		  cout<<"Enter L for left, R for right or U for up"<<endl;
+		  cin>>direction;
+	  }
+	  
 	  if(direction == "L"){
-		  player->current = player->current->left;
+		  if(player->current->left!=NULL)
+			player->current = player->current->left;
+		else{
+			cout<<"This way is locked."<<endl;
+			
+			while(direction!="R" || direction!="U"){
+				cout<<"Enter R for right or U for up"<<endl;
+			    cin>>direction;
+			}
+		}
 	  }
 	  
 	  else if(direction == "R"){
+		  if(player->current->right!=NULL)
 		  player->current = player->current->right;
+		  else{
+			cout<<"This way is locked."<<endl;
+			
+			while(direction!="L" || direction!="U"){
+				cout<<"Enter L for left or U for up"<<endl;
+			    cin>>direction;
+			}
+		}
 	  }
 	  
 	  else if(direction == "U"){
 		  player->current = player->current->parent;
 	  }
 	  
-	  else{
-		  cout<<"Enter L for left, R for right or U for up"<<endl;
-	  }
+	  
  }
  
  bool GameBoard::isLeaf(Node* node){

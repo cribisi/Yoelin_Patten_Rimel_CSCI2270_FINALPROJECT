@@ -48,6 +48,7 @@ void Player::updateExp(int exp){
 	
 };
 
+<<<<<<< HEAD
 int Player::getLevel(){
 	
 	return level;
@@ -65,6 +66,9 @@ int Player::attack(){
 
 
 
+=======
+void Player::update
+>>>>>>> 59cb2e8aa03a44f5bd3d8dd4592527a21af68bee
 
 
 }
