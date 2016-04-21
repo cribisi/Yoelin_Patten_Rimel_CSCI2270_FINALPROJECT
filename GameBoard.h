@@ -48,6 +48,9 @@ class GameBoard{
 
 		//This is the number of nodes in our BST
 		int nodeCount;
+		
+		//This will hold all of the player info
+		Player* player;
 
 	protected:
 
