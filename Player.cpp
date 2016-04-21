@@ -1,12 +1,15 @@
 #include "Player.h"
 #include <iostream>
-
+#include <stdio.h>      
+#include <stdlib.h>     
+#include <time.h>       
 
 using namespace std;
 
 Player::Player(int input_health, Node* input_start){
 	health=input_health;
 	current = input_start;
+	setLevel(0);
 };
 	
 Player::~Player(){
@@ -26,7 +29,9 @@ void Player::levelUp(){
 	delete expBar;
 
 	expBar = new int[expLength];
-	currentExp = &expBar[0];	
+	currentExp = &expBar[0];
+	int newLevel = getLevel();
+	setLevel(newLevel);	
 };
 
 
@@ -43,4 +48,23 @@ void Player::updateExp(int exp){
 	
 };
 
+int Player::getLevel(){
+	
+	return level;
 
+};
+
+void Player::setLevel(int i){
+
+	level = i;
+};
+
+
+int Player::attack(){
+
+
+
+
+
+
+}

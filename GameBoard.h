@@ -21,9 +21,6 @@ class GameBoard{
 
 		//head of our BST tree
 		Node* head;
-
-		//This is the number of nodes in our BST
-		int nodeCount;
 		
 		//This will hold all of the player info
 		Player* player;
