@@ -11,27 +11,46 @@ GameBoard::~GameBoard(){};
 
 void GameBoard::explicitInitialization()
 {
-    node *Mountains;
-    node *Cave;
-    node *Dungeon;
-    node *LavaPools;
-    node *SilverCrystalRequired;
-    node *RedCrystalRoom;
-    node *Library;
-    node *Book1;
-    node *Book2;
-    node *EmeraldMine;
-    node *GreenCrystalRoom;
-    node *ClimbMountain1;
-    node *ClimbMountain2;
-    node *ClimbMountain3;
-    node *SilverCrystalRoom;
-    node *Lake;
-    node *BlueCrystalRoom;
 
+    //need to allocate this on the heap		
+    node *Mountains = new node;
+    node *Cave = new node;
+    node *Dungeon = new node;
+    node *LavaPools = new node;
+    node *SilverCrystalRequired = new node;
+    node *RedCrystalRoom = new node;
+    node *Library = new node;
+    node *Book1 = new node;
+    node *Book2 = new node;
+    node *EmeraldMine = new node;
+    node *GreenCrystalRoom = new node;
+    node *ClimbMountain1 = new node;
+    node *ClimbMountain2 = new node;
+    node *ClimbMountain3 = new node;
+    node *SilverCrystalRoom = new node;
+    node *Lake = new node;
+    node *BlueCrystalRoom = new node;
+    node *start = new node;
+	
+    
+    head = start;
+    start->nodeName = "village";
+    start->description = "welcome to the mysterious village you have two doors to choose from ... procede with caution!";
+    start->treasure = "None";
+    start->parent = NULL;
+    start->left = Mountains;
+    start->right  = Lake;
+
+    Mountains->nodeName = "Mountiains";
+    Mountains->description = "you have climbed the trechorous Mountains where shall you go now?...... ";
+    Mountains->treasure = "None";    
     Mountains->parent=head;
     Mountains->left=Cave;
     Mountains->right=EmeraldMine;
+
+    Lake->parent=head;
+    Lake->left=NULL;
+    Lake->right=BlueCrystalRoom;
 
     Cave->parent=Mountains;
     Cave->left=Dungeon;
@@ -73,10 +92,7 @@ void GameBoard::explicitInitialization()
     ClimbMountain3->left=NULL;
     ClimbMountain3->right=NULL;
 
-    Lake->parent=head;
-    Lake->left=NULL;
-    Lake->right=BlueCrystalRoom;
-}
+   }
 
 
 

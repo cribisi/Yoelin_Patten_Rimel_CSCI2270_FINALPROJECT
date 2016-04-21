@@ -23,21 +23,21 @@ class GameBoard{
 	 * node ID =  the value associated with this room used to created the BST
 	 */
 	struct node{
-		int nodeID;
 		bool visited;
 		int exp;
+		std::string treasure;
 		std::string nodeName;
+		std::string description;
 		node* left;
 		node* right;
 		node* parent;
 
-		node(int node_id){
+		node(){
 			visited = false;
 			exp = 1;
-			left = 0; //Changing all nullptr's to 0's so I can compile
-			right = 0;
-			parent = 0;
-			nodeID = node_id;
+			left = NULL; //Changing all nullptr's to 0's so I can compile// changed to NULL should work
+			right = NULL;
+			parent = NULL;
 		}
 	};
 
@@ -105,7 +105,9 @@ class GameBoard{
 		 * @param int dungeonLength
 		 * @param int maxID_Size
 		 */
-		void randDungeonInitalization(int dungeonLength, int maxID_Size);
+		//void randDungeonInitalization(int dungeonLength, int maxID_Size);
+		
+
 		void explicitInitialization();
 
 
