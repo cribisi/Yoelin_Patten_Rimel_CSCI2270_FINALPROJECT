@@ -1,5 +1,7 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
+#include "GameBoard.h"
+
 
 class Player{
 
@@ -7,15 +9,18 @@ class Player{
 
 	private:
 		int* expBar;
-		int* health;
+		int* currentExp;
+		int health;
+		int expLength;
 		node* current;
+
 	protected:	
 	public:
-		Player();
-		~Player();
-		void initExpBar(int init_size);
-		void updateExp(GameBoard* board);
-		void levelUp();
+		Player(int health, node* head);//DONE
+		~Player();//DONE
+		void initExpBar(int init_size);//DONE
+		void updateExp(int exp);//DONE
+		void levelUp();//DONE
 		void attack();
 		void updateHealth();
 		void isDead();
