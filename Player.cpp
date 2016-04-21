@@ -43,4 +43,6 @@ void Player::updateExp(int exp){
 	
 };
 
+void Player::update
+
 
