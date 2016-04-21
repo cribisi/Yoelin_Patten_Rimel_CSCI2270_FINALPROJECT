@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Player::Player(int input_health, node* input_start){
+Player::Player(int input_health, Node* input_start){
 	health=input_health;
 	current = input_start;
 };

@@ -1,6 +1,7 @@
 #ifndef PLAYER_H_
 #define PLAYER_H_
-#include "GameBoard.h"
+#include "Node.h"
+#include <iostream>
 
 
 class Player{
@@ -12,11 +13,10 @@ class Player{
 		int* currentExp;
 		int health;
 		int expLength;
-		node* current;
-
+		
 	protected:	
 	public:
-		Player(int health, node* head);//DONE
+		Player(int health, Node* head);//DONE
 		~Player();//DONE
 		void initExpBar(int init_size);//DONE
 		void updateExp(int exp);//DONE
@@ -24,6 +24,8 @@ class Player{
 		void attack();
 		void updateHealth();
 		void isDead();
+		Node* current;
+
 
 
 		

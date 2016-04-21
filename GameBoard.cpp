@@ -13,24 +13,24 @@ void GameBoard::explicitInitialization()
 {
 
     //need to allocate this on the heap		
-    node *Mountains = new node; //defined
-    node *Cave = new node; //defined
-    node *Dungeon = new node; //defined
-    node *LavaPools = new node; //defined
-    node *SilverCrystalRequired = new node; //defined
-    node *RedCrystalRoom = new node; //defined
-    node *Library = new node; //defined
-    node *Book1 = new node; //defined
-    node *Book2 = new node; //defined
-    node *EmeraldMine = new node; //defined
-    node *GreenCrystalRoom = new node; //defined
-    node *ClimbMountain1 = new node; //defined
-    node *ClimbMountain2 = new node; //defined
-    node *ClimbMountain3 = new node; //defined
-    node *SilverCrystalRoom = new node; //defined
-    node *Lake = new node; //defined
-    node *BlueCrystalRoom = new node; //defined
-    node *start = new node; //defined
+    Node *Mountains = new Node; //defined
+    Node *Cave = new Node; //defined
+    Node *Dungeon = new Node; //defined
+    Node *LavaPools = new Node; //defined
+    Node *SilverCrystalRequired = new Node; //defined
+    Node *RedCrystalRoom = new Node; //defined
+    Node *Library = new Node; //defined
+    Node *Book1 = new Node; //defined
+    Node *Book2 = new Node; //defined
+    Node *EmeraldMine = new Node; //defined
+    Node *GreenCrystalRoom = new Node; //defined
+    Node *ClimbMountain1 = new Node; //defined
+    Node *ClimbMountain2 = new Node; //defined
+    Node *ClimbMountain3 = new Node; //defined
+    Node *SilverCrystalRoom = new Node; //defined
+    Node *Lake = new Node; //defined
+    Node *BlueCrystalRoom = new Node; //defined
+    Node *start = new Node; //defined
 	
     
     head = start;
@@ -78,7 +78,7 @@ void GameBoard::explicitInitialization()
 
     SilverCrystalRequired->nodeName = "Silver Crystal Required";
     SilverCrystalRequired->description = "In order to open this door, you must have a silver crystal";
-    SilverCrystalRequired->trasure = "None";
+    SilverCrystalRequired->treasure = "None";
     SilverCrystalRequired->parent=LavaPools;
     SilverCrystalRequired->left=NULL;
     SilverCrystalRequired->right=RedCrystalRoom;
@@ -239,8 +239,8 @@ void GameBoard::explicitInitialization()
 	  }
  }
  
- bool GameBoard::isLeaf(){
-	 if(player->current->left == NULL && player->current->right == NULL)
+ bool GameBoard::isLeaf(Node* node){
+	 if(node->left == NULL && node->right == NULL)
 		return true;
 	return false;
  }

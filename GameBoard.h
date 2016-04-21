@@ -1,6 +1,7 @@
 #ifndef GAMEBOARD_H_
 #define GAMEBOARD_H_
 #include "Player.h"
+#include "Node.h"
 #include <string>
 
 
@@ -15,36 +16,11 @@
  */
 class GameBoard{
 
-	/**
-	 * The BST node structure this will contain all the information that that is need
-	 * is needed in each room of the dungoen, ie think of these as rooms
-	 * exp = experiment point associated with enter the room for the first time
-	 * visited = bool that says if this room has been explored
-	 * node ID =  the value associated with this room used to created the BST
-	 */
-	struct node{
-		bool visited;
-		int exp;
-		std::string treasure;
-		std::string nodeName;
-		std::string description;
-		node* left;
-		node* right;
-		node* parent;
-
-		node(){
-			visited = false;
-			exp = 1;
-			left = NULL; //Changing all nullptr's to 0's so I can compile// changed to NULL should work
-			right = NULL;
-			parent = NULL;
-		}
-	};
 
 	private:
 
 		//head of our BST tree
-		node* head;
+		Node* head;
 
 		//This is the number of nodes in our BST
 		int nodeCount;
@@ -84,14 +60,14 @@ class GameBoard{
 
 
 
-		void traverse(int i);
+		void traverse();
 
 		/*
 		 * @brief input nodes and checks if it is a leaf if so return true
 		 * @param node*
 		 * @return bool
 		 */
-		bool isLeaf(node*);
+		bool isLeaf(Node*);
 
 		/*
 		 * @brief the boss encounter will take in player and boss health and
