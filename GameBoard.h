@@ -21,7 +21,7 @@ class GameBoard{
 
 		//head of our BST tree
 		Node* head;
-		
+
 		//This will hold all of the player info
 		Player* player;
 
@@ -73,7 +73,7 @@ class GameBoard{
 		 * @param int bossHealth
 		 * @param Player p
 		 */
-		void bossEncounter(int bossHealth, Player p );
+        bool bossEncounter();
 
 		/*
 		 * @brief creates the dungoean based on simple BST initialization
@@ -82,7 +82,7 @@ class GameBoard{
 		 * @param int maxID_Size
 		 */
 		//void randDungeonInitalization(int dungeonLength, int maxID_Size);
-		
+
 
 		void explicitInitialization();
 

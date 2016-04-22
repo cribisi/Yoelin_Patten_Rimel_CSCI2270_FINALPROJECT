@@ -1,5 +1,8 @@
 #include "GameBoard.h"
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
 
@@ -12,14 +15,14 @@ GameBoard::GameBoard(){
 
 GameBoard::~GameBoard(){
 
-	delete player;	
+	delete player;
 
 };
 
 void GameBoard::explicitInitialization()
 {
 
-    //need to allocate this on the heap		
+    //need to allocate this on the heap
     Node *Mountains = new Node; //defined
     Node *Cave = new Node; //defined
     Node *Dungeon = new Node; //defined
@@ -38,8 +41,8 @@ void GameBoard::explicitInitialization()
     Node *Lake = new Node; //defined
     Node *BlueCrystalRoom = new Node; //defined
     Node *start = new Node; //defined
-	
-    
+
+
     head = start;
     start->nodeName = "village";
     start->description = "Welcome to the mysterious village! You have two doors to choose from ... proceed with caution!";
@@ -50,7 +53,7 @@ void GameBoard::explicitInitialization()
 
     Mountains->nodeName = "Mountiains";
     Mountains->description = "You have stumbled upon an array of mountains, where will your next move be......? ";
-    Mountains->treasure = "None";    
+    Mountains->treasure = "None";
     Mountains->parent=head;
     Mountains->left=Cave;
     Mountains->right=EmeraldMine;
@@ -75,7 +78,7 @@ void GameBoard::explicitInitialization()
     Dungeon->parent=Cave;
     Dungeon->left=LavaPools;
     Dungeon->right=Library;
-    
+
     LavaPools->nodeName = "Lava Pools";
 	LavaPools->description = "You have now entered the lava pools. Fire resistant footwear not included";
 	LavaPools->treasure = "None";
@@ -131,35 +134,35 @@ void GameBoard::explicitInitialization()
     ClimbMountain3->parent=ClimbMountain2;
     ClimbMountain3->left=NULL;
     ClimbMountain3->right=SilverCrystalRoom;
-    
+
     Book1->nodeName="Book 1";
     Book1->description="The book reads \"In order to facce the dragon, do not allow yourself to be nullified\"";
     Book1->treasure="None";
     Book1->parent=Library;
     Book1->left=NULL;
     Book1->right=NULL;
-    
+
     Book2->nodeName="Book 2";
     Book2->description="The book reads \"RGB\"";
     Book2->treasure="None";
     Book2->parent=Library;
     Book2->left=NULL;
     Book2->right=NULL;
-    
+
     BlueCrystalRoom->nodeName="Blue Crystal Room";
     BlueCrystalRoom->description="This room has a strange blue tint.../nOh look! You found a blue crystal!";
     BlueCrystalRoom->treasure="Blue Crystal";
     BlueCrystalRoom->parent=Lake;
     BlueCrystalRoom->left=NULL;
     BlueCrystalRoom->right=NULL;
-    
+
     GreenCrystalRoom->nodeName="Green Crystal Room";
     GreenCrystalRoom->description="This room has a strange green aura.../nIt must be that green crystal!";
     GreenCrystalRoom->treasure="Green Crystal";
     GreenCrystalRoom->parent=EmeraldMine;
     GreenCrystalRoom->left=NULL;
     GreenCrystalRoom->right=NULL;
-    
+
     SilverCrystalRoom->nodeName="Silver Crystal Room";
     SilverCrystalRoom->description="This room is really really shiny.../nShiny object! You found the silver crystal";
     SilverCrystalRoom->treasure="Silver Crystal";
@@ -214,16 +217,16 @@ void GameBoard::explicitInitialization()
 
 
  }*/
- 
+
  void GameBoard::traverse(){
-	  
+
 	  string direction;
-	  
+
 	  if(player->current->visited == false){
 		  player->current->visited == true;
 		  player.updateExp(player->current->exp);
 	  }
-	  
+
 	  cout << "\033[2J\033[1;1H";
 	  cout<<"==============================="<<endl;
 	  cout<<player->current->nodeName<<endl;
@@ -233,51 +236,103 @@ void GameBoard::explicitInitialization()
 	  cout<<endl;
 	  cout<<"Enter L for left, R for right or U for up"<<endl;
 	  cin>>direction;
-	  
+
 	  while(direction!="L" || direction!="R" || direction!="U"){
 		  cout<<"Enter L for left, R for right or U for up"<<endl;
 		  cin>>direction;
 	  }
-	  
+
 	  if(direction == "L"){
 		  if(player->current->left!=NULL)
 			player->current = player->current->left;
 		else{
 			cout<<"This way is locked."<<endl;
-			
+
 			while(direction!="R" || direction!="U"){
 				cout<<"Enter R for right or U for up"<<endl;
 			    cin>>direction;
 			}
 		}
 	  }
-	  
+
 	  else if(direction == "R"){
 		  if(player->current->right!=NULL){
-		 
+
 		  player->current = player->current->right;
 		}
 		  else{
 			cout<<"This way is locked."<<endl;
-			
+
 			while(direction!="L" || direction!="U"){
 				cout<<"Enter L for left or U for up"<<endl;
 			    cin>>direction;
 			}
 		}
 	  }
-	  
+
 	  else if(direction == "U"){
 		  player->current = player->current->parent;
 	  }
-	  
-	  
+
+
  }
- 
+
  bool GameBoard::isLeaf(Node* node){
 	 if(node->left == NULL && node->right == NULL)
 		return true;
 	return false;
  }
+
+bool GameBoard::bossEncounter() //player is the Player
+{
+    srand(time(NULL)); //Initializing the random seed with the current time.
+	int diceRoll;
+	int dragonHealth=100;
+	int dragonAttack; //This variable takes in a random number (modifed with multipliers and offsets) and stores it.
+	int playerAttack; //This variable retrieves a value from player.attack() and stores it locally.
+	int playerDefense;
+	int playerDefends=3;
+	string playerDChoice;
+	string playerAChoice;
+    cout << "\033[2J\033[1;1H";
+    cout<<"==============================="<<endl;
+    cout<<"A dragon appears before you. Fight for your life"<<endl;
+
+
+	while(player.health!=0)
+	{
+	    dragonAttack=rand()%10 + rand()%10 + 2; //Dragon's damage is from 2-20
+	    cout<<"The dragon attacks and will do "<<dragonAttack<<" damage."<<endl;
+        cout<<"You have "<<player.health<<" life left."<<endl;
+	    cout<<"Do you want to defend (Y/N)? "<<"You have "<<playerDefends<<" left."<<endl;
+	    cin>>playerDChoice;
+
+	    if(playerDChoice=="Y")
+        {
+            playerDefends--;
+            playerDefense=player.defend();
+            player.health=player.health-dragonAttack+playerDefence<<endl;
+            cout<<"The dragon attacked and did "<<dragonAttack<<" damage, but you defended "<<playerDefends<<" damage"<<endl;
+            cout<<"You have "<<player.health<<" life left."<<endl;
+        }
+	    else
+        {
+            player.health=player.health-dragonAttack;
+            cout<<"The dragon attacked and did "<<dragonAttack<<" damage"<<endl;
+            cout<<"You have "<<player.health<<" life left."<<endl;
+        }
+
+	    cout<<"Do you want to attack (Y/N)?"<<endl;
+	    cin>>playerAChoice;
+
+	    if(playerAChoice=="Y")
+        {
+            playerAttack=player.attack();
+            dragonHealth=dragonHealth-playerAttack();
+            cout<<"You attacked the dragon and did "<<playerAttack<<"damage."<<endl;
+            cout<<"The dragon has "<<dragonHealth<<" life left."<<endl;
+        }
+
+}
 
 
