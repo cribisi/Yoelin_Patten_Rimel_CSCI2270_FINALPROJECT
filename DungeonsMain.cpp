@@ -13,10 +13,7 @@ using namespace std;
 int main()
 {
 	
-	int health = 100;
-	Player player(health);
-	
-	GameBoard game(&player);
+	iGameboard game;
 	
 	
 	
@@ -41,7 +38,7 @@ int main()
 	}
 
 	while(player.health!=0){
-		game->player.traverse();
+		game.traverse();
 	}
 
     
