@@ -34,7 +34,7 @@ class GameBoard{
 		 * the dungeon.
 		 * @param int num_nodes
 		 */
-		GameBoard(int num_nodes);
+		GameBoard(Player* player);
 
 		/*
 		 * @brief deconstructor
