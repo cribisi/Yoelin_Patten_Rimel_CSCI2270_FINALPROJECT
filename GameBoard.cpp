@@ -3,11 +3,18 @@
 
 using namespace std;
 
-GameBoard::GameBoard(Player* p){
-	player = p
+GameBoard::GameBoard(){
+	explicitInitialization();
+	player = new Player(100,head);
+
+
 };
 
-GameBoard::~GameBoard(){};
+GameBoard::~GameBoard(){
+
+	delete player;	
+
+};
 
 void GameBoard::explicitInitialization()
 {
