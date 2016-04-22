@@ -11,10 +11,9 @@ class Player{
 	private:
 		int* expBar;
 		int* currentExp;
-		int health;
 		int expLength;
-		
-	protected:	
+
+	protected:
 	public:
 		Player(int health, Node* head);//DONE
 		~Player();//DONE
@@ -25,10 +24,11 @@ class Player{
 		void updateHealth();
 		void isDead();
 		Node* current;
+        int health;
 
 
 
-		
+
 };
 
 
