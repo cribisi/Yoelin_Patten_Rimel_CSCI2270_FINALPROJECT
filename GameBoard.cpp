@@ -3,8 +3,8 @@
 
 using namespace std;
 
-GameBoard::GameBoard(int num_nodes){
-	this->nodeCount = num_nodes;
+GameBoard::GameBoard(Player* p){
+	player = p
 };
 
 GameBoard::~GameBoard(){};
@@ -212,6 +212,11 @@ void GameBoard::explicitInitialization()
 	  
 	  string direction;
 	  
+	  if(player->current->visited == false){
+		  player->current->visited == true;
+		  player.updateExp(player->current->exp);
+	  }
+	  
 	  cout << "\033[2J\033[1;1H";
 	  cout<<"==============================="<<endl;
 	  cout<<player->current->nodeName<<endl;
@@ -241,8 +246,10 @@ void GameBoard::explicitInitialization()
 	  }
 	  
 	  else if(direction == "R"){
-		  if(player->current->right!=NULL)
+		  if(player->current->right!=NULL){
+		 
 		  player->current = player->current->right;
+		}
 		  else{
 			cout<<"This way is locked."<<endl;
 			
