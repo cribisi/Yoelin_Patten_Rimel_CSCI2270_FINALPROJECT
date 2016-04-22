@@ -23,10 +23,8 @@ class Player{
 		void initExpBar(int init_size);//DONE
 		void updateExp(int exp);//DONE
 		void levelUp();//DONE
-		int  attack();
-		int  defend();
-		void updateHealth();
-		void isDead();
+		int  attack();//DONE
+		int  defend();//DONE
 		Node* current;
         	int health;
 

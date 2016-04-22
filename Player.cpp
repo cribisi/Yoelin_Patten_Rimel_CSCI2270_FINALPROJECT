@@ -35,9 +35,7 @@ void Player::levelUp(){
 };
 
 
-void Player::updateExp(int exp){
-
-		
+void Player::updateExp(int exp){	
 
 	for(int i = 0; i < exp; +i){
 		++currentExp;
@@ -63,6 +61,20 @@ void Player::setLevel(int i){
 
 int Player::attack(){
 
+	srand (time(NULL));
+
+	int damageMult = rand()%9 + 1;
+
+	return level*damageMult;
 
 
-}
+};
+
+
+int Player::defend(){
+
+
+	return level*3;
+
+
+};
