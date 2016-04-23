@@ -1,5 +1,6 @@
 #include "GameBoard.h"
 #include "Player.h"
+#include "Node.h"
 
 
 #include <iostream>
@@ -12,11 +13,9 @@ using namespace std;
 
 int main()
 {
-	
-	iGameboard game;
-	
-	
-	
+
+	GameBoard game;
+
     string choice;
     string start;
     cout<<"==============================="<<endl;
@@ -37,11 +36,11 @@ int main()
 		cin>>start;
 	}
 
-	while(player.health!=0){
+	while(game.player->health!=0){
 		game.traverse();
 	}
 
-    
+
 
     cout<<"Thank you for playing! Goodbye!"<<endl;
 

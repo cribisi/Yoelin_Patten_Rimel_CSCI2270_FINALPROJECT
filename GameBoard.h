@@ -23,11 +23,12 @@ class GameBoard{
 		Node* head;
 
 		//This will hold all of the player info
-		Player* player;
+		//Player* player; //Changed player to public JOHN VAN PATTEN
 
 	protected:
 
 	public:
+	    Player* player;
 
 		/* @brief constructor just takes in an int num_nodes and sets that as
 		 * the private nodeCount parameter, which sets how many nodes in
