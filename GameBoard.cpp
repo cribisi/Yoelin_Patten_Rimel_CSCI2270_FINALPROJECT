@@ -220,41 +220,52 @@ void GameBoard::explicitInitialization()
 
  void GameBoard::traverse(){
 
+	 cout <<  "help us" << endl;
 	  string direction;
 
+	  //update exp
 	  if(player->current->visited == false){
+		  cout << "visited" << endl;
 		  player->current->visited == true;
 		  player->updateExp(player->current->exp);
 	  }
 
-	  cout << "\033[2J\033[1;1H";
+	  
+		
+	 // cout << "\033[2J\033[1;1H";//clear screen
+
+
 	  cout<<"==============================="<<endl;
-	  cout<<player->current->nodeName<<endl;
+	  cout<<endl;
+	  cout<<endl;
+	  cout<< player->current->nodeName<<endl;
+	  cout<<endl;
+	  cout<<endl;
 	  cout<<"==============================="<<endl;
 	  cout<<endl;
 	  cout<<player->current->description<<endl;
 	  cout<<endl;
 	  cout<<"Enter L for left, R for right or U for up"<<endl;
 	  cin>>direction;
-
-	  while(direction!="L" || direction!="R" || direction!="U"){
+		
+	  //Checking for correct input
+	  while(direction!="L" && direction!="R" && direction!="U"){
 		  cout<<"Enter L for left, R for right or U for up"<<endl;
 		  cin>>direction;
 	  }
 
+	  //move left
 	  if(direction == "L"){
-		  if(player->current->left!=NULL)
+		if(player->current->left!=NULL){
 			player->current = player->current->left;
+		}
 		else{
 			cout<<"This way is locked."<<endl;
-
-			while(direction!="R" || direction!="U"){
-				cout<<"Enter R for right or U for up"<<endl;
-			    cin>>direction;
-			}
+			return;
 		}
 	  }
-
+		
+	  //move right
 	  else if(direction == "R"){
 		  if(player->current->right!=NULL){
 
@@ -262,26 +273,30 @@ void GameBoard::explicitInitialization()
 		}
 		  else{
 			cout<<"This way is locked."<<endl;
-
-			while(direction!="L" || direction!="U"){
-				cout<<"Enter L for left or U for up"<<endl;
-			    cin>>direction;
-			}
+			return;
 		}
 	  }
-
+	
+	  //move up
 	  else if(direction == "U"){
-		  player->current = player->current->parent;
+		  if(player->current->parent != NULL){
+			 player->current = player->current->parent;
+		  }
+		  else{
+			cout<<"This way is locked."<<endl;
+			return;
+
+		   }
 	  }
 
 
  }
 
- bool GameBoard::isLeaf(Node* node){
+bool GameBoard::isLeaf(Node* node){
 	 if(node->left == NULL && node->right == NULL)
 		return true;
 	return false;
- }
+}
 
 bool GameBoard::bossEncounter() //player is the Player
 {

@@ -37,7 +37,7 @@ void Player::levelUp(){
 
 void Player::updateExp(int exp){	
 
-	for(int i = 0; i < exp; +i){
+	for(int i = 0; i < exp; ++i){
 		++currentExp;
 		if(currentExp == &expBar[expLength]){
 			levelUp();

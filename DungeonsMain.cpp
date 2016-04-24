@@ -11,7 +11,6 @@ using namespace std;
 
 void startMenu(string& input){
 
-    string start;
     cout<<"==============================="<<endl;
     cout<<endl;
     cout<<endl;
@@ -28,9 +27,8 @@ void startMenu(string& input){
     cout<<endl;
     cout<<endl;
 
-
     cin.clear();
-    cin>>input;	
+    getline(cin,input);	
 
 }
 
@@ -43,11 +41,14 @@ int main()
 
     startMenu(input);
 
+    cout << " input =  " << input;
+
 	
     if(input == "START"){
 
-	    while(endCondition()){
-	    
+	    while(true){
+	    	
+	//	cout << "hey" << endl;
 	    	game.traverse();
 	    
 	    }
