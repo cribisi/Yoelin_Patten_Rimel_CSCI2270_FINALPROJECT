@@ -74,7 +74,7 @@ class GameBoard{
 		 * @param int bossHealth
 		 * @param Player p
 		 */
-        bool bossEncounter();
+        bool playerHasWonBossEncounter();
 
 		/*
 		 * @brief creates the dungoean based on simple BST initialization

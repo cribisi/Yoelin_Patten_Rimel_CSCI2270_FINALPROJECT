@@ -25,6 +25,7 @@ class Player{
 		void levelUp();//DONE
 		int  attack();//DONE
 		int  defend();//DONE
+		bool hasAllCrystals();
 		Node* current;
         int health;
 

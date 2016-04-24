@@ -9,7 +9,8 @@ using namespace std;
 Player::Player(int input_health, Node* input_start){
 	health=input_health;
 	current = input_start;
-	setLevel(0);
+	setLevel(0);//SHOULD BE 0
+	initExpBar(2);
 };
 	
 Player::~Player(){
@@ -30,19 +31,20 @@ void Player::levelUp(){
 
 	expBar = new int[expLength];
 	currentExp = &expBar[0];
-	int newLevel = getLevel();
-	setLevel(newLevel);	
+	int newLevel = getLevel()+1;
+	setLevel(newLevel);
+	cout << "LEVELED UP!!! " << endl;
 };
 
 
 void Player::updateExp(int exp){	
 
-	for(int i = 0; i < exp; ++i){
-		++currentExp;
-		if(currentExp == &expBar[expLength]){
-			levelUp();
-		}	
-	}
+	//cout << "length of expBar = " << expLength << endl;//DEBUG PURPOSES
+	currentExp++;
+	if(currentExp == &expBar[expLength]){
+		levelUp();
+	}	
+	
 	
 };
 
@@ -76,5 +78,20 @@ int Player::defend(){
 
 	return level*3;
 
+
+};
+
+bool Player::hasAllCrystals(){
+
+	bool rtnValue = true;
+	for( int i = 0; i < 4 ; ++i){
+		
+		if(crystals[i] == false){
+		
+			rtnValue = false;
+		}
+	}
+
+	return rtnValue;
 
 };

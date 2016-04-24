@@ -56,7 +56,7 @@ void GameBoard::explicitInitialization()
     Mountains->treasure = "None";
     Mountains->parent=head;
     Mountains->left=Cave;
-    Mountains->right=EmeraldMine;
+    Mountains->right=ClimbMountain1;
 
     Lake->nodeName = "Lake";
     Lake->description = "You have entered the Lake, hopefully you can swim!";
@@ -95,7 +95,7 @@ void GameBoard::explicitInitialization()
 
     RedCrystalRoom->nodeName = "Red Crystal Room";
     RedCrystalRoom->description = "Hmm...this room has a strange red glow...\nAfter hours of searching you find a red crystal...this could be useful at some point";
-    RedCrystalRoom->treasure = "Red Crystal";
+    RedCrystalRoom->treasure = "R";
     RedCrystalRoom->parent=SilverCrystalRequired;
     RedCrystalRoom->left=NULL;
     RedCrystalRoom->right=NULL;
@@ -151,21 +151,21 @@ void GameBoard::explicitInitialization()
 
     BlueCrystalRoom->nodeName="Blue Crystal Room";
     BlueCrystalRoom->description="This room has a strange blue tint.../nOh look! You found a blue crystal!";
-    BlueCrystalRoom->treasure="Blue Crystal";
+    BlueCrystalRoom->treasure="B";
     BlueCrystalRoom->parent=Lake;
     BlueCrystalRoom->left=NULL;
     BlueCrystalRoom->right=NULL;
 
     GreenCrystalRoom->nodeName="Green Crystal Room";
     GreenCrystalRoom->description="This room has a strange green aura.../nIt must be that green crystal!";
-    GreenCrystalRoom->treasure="Green Crystal";
+    GreenCrystalRoom->treasure="G";
     GreenCrystalRoom->parent=EmeraldMine;
     GreenCrystalRoom->left=NULL;
     GreenCrystalRoom->right=NULL;
 
     SilverCrystalRoom->nodeName="Silver Crystal Room";
     SilverCrystalRoom->description="This room is really really shiny.../nShiny object! You found the silver crystal";
-    SilverCrystalRoom->treasure="Silver Crystal";
+    SilverCrystalRoom->treasure="S";
     SilverCrystalRoom->parent=ClimbMountain3;
     SilverCrystalRoom->left=NULL;
     SilverCrystalRoom->right=NULL;
@@ -220,21 +220,31 @@ void GameBoard::explicitInitialization()
 
  void GameBoard::traverse(){
 
-	 cout <<  "help us" << endl;
-	  string direction;
-
-	  //update exp
-	  if(player->current->visited == false){
-		  cout << "visited" << endl;
-		  player->current->visited == true;
-		  player->updateExp(player->current->exp);
-	  }
-
-	  
+	  string direction;	  
 		
-	 // cout << "\033[2J\033[1;1H";//clear screen
+	  //update exp and pick up crystal
+	  if(player->current->visited == false){
+		  player->current->visited = true;
+		  player->updateExp(1);
 
-
+		  //UPDATE: crystal array===============
+		  if(player->current->treasure == "R" ){
+		  	player->crystals[0] = true;
+		  }
+		  else if(player->current->treasure == "G" ){
+		  	player->crystals[1] = true;
+		  }
+		  else if(player->current->treasure == "B" ){
+		  	player->crystals[2] = true;
+		  }
+		  else if(player->current->treasure == "S" ){
+		  	player->crystals[3] = true;
+		  }
+		//========================================
+	  }
+		
+				
+	  cout << "player level: " << player->getLevel() << endl;
 	  cout<<"==============================="<<endl;
 	  cout<<endl;
 	  cout<<endl;
@@ -247,7 +257,12 @@ void GameBoard::explicitInitialization()
 	  cout<<endl;
 	  cout<<"Enter L for left, R for right or U for up"<<endl;
 	  cin>>direction;
-		
+
+	  cout << endl;
+	  cout << endl;
+
+
+	  
 	  //Checking for correct input
 	  while(direction!="L" && direction!="R" && direction!="U"){
 		  cout<<"Enter L for left, R for right or U for up"<<endl;
@@ -258,6 +273,8 @@ void GameBoard::explicitInitialization()
 	  if(direction == "L"){
 		if(player->current->left!=NULL){
 			player->current = player->current->left;
+			cout << "\033[2J\033[1;1H";//clear screen
+
 		}
 		else{
 			cout<<"This way is locked."<<endl;
@@ -268,8 +285,9 @@ void GameBoard::explicitInitialization()
 	  //move right
 	  else if(direction == "R"){
 		  if(player->current->right!=NULL){
+		  	player->current = player->current->right;
+			cout << "\033[2J\033[1;1H";//clear screen
 
-		  player->current = player->current->right;
 		}
 		  else{
 			cout<<"This way is locked."<<endl;
@@ -281,6 +299,8 @@ void GameBoard::explicitInitialization()
 	  else if(direction == "U"){
 		  if(player->current->parent != NULL){
 			 player->current = player->current->parent;
+			 cout << "\033[2J\033[1;1H";//clear screen
+
 		  }
 		  else{
 			cout<<"This way is locked."<<endl;
@@ -298,7 +318,7 @@ bool GameBoard::isLeaf(Node* node){
 	return false;
 }
 
-bool GameBoard::bossEncounter() //player is the Player
+bool GameBoard::playerHasWonBossEncounter() //player is the Player
 {
     srand(time(NULL)); //Initializing the random seed with the current time.
 	int diceRoll;
@@ -314,9 +334,9 @@ bool GameBoard::bossEncounter() //player is the Player
     cout<<"A dragon appears before you. Fight for your life"<<endl;
 
 
-	while(player->health!=0)
+	while(player->health >= 0 && dragonHealth >= 0)
 	{
-	    dragonAttack=rand()%10 + rand()%10 + 2; //Dragon's damage is from 2-20
+	    dragonAttack=rand()%10 + 10; //Dragon's damage is from 10-19
 	    cout<<"The dragon attacks and will do "<<dragonAttack<<" damage."<<endl;
         cout<<"You have "<<player->health<<" life left."<<endl;
 	    cout<<"Do you want to defend (Y/N)? "<<"You have "<<playerDefends<<" left."<<endl;
@@ -327,8 +347,11 @@ bool GameBoard::bossEncounter() //player is the Player
             playerDefends--;
             playerDefense=player->defend();
             player->health=player->health-dragonAttack+playerDefense;
-            cout<<"The dragon attacked and did "<<dragonAttack<<" damage, but you defended "<<playerDefends<<" damage"<<endl;
+            cout<<"The dragon attacked and did "<<dragonAttack<<" damage, but you defended "<<playerDefense<<" damage"<<endl;
             cout<<"You have "<<player->health<<" life left."<<endl;
+	    if(player->health <= 0){
+	    	return false;
+	    }
         }
 	    else
         {
@@ -346,9 +369,15 @@ bool GameBoard::bossEncounter() //player is the Player
             dragonHealth=dragonHealth-player->attack();
             cout<<"You attacked the dragon and did "<<localPlayerAttack<<"damage."<<endl;
             cout<<"The dragon has "<<dragonHealth<<" life left."<<endl;
-        }
+	    if(dragonHealth<=0)
+	    {
+	    	return true;
+        
+	    }
 
 	}
+	
+}
 }
 
 
