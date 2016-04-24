@@ -224,7 +224,7 @@ void GameBoard::explicitInitialization()
 
 	  if(player->current->visited == false){
 		  player->current->visited == true;
-		  player.updateExp(player->current->exp);
+		  player->updateExp(player->current->exp);
 	  }
 
 	  cout << "\033[2J\033[1;1H";
@@ -289,7 +289,7 @@ bool GameBoard::bossEncounter() //player is the Player
 	int diceRoll;
 	int dragonHealth=100;
 	int dragonAttack; //This variable takes in a random number (modifed with multipliers and offsets) and stores it.
-	int playerAttack; //This variable retrieves a value from player.attack() and stores it locally.
+	int localPlayerAttack; //This variable retrieves a value from player.attack() and stores it locally.
 	int playerDefense;
 	int playerDefends=3;
 	string playerDChoice;
@@ -299,27 +299,27 @@ bool GameBoard::bossEncounter() //player is the Player
     cout<<"A dragon appears before you. Fight for your life"<<endl;
 
 
-	while(player.health!=0)
+	while(player->health!=0)
 	{
 	    dragonAttack=rand()%10 + rand()%10 + 2; //Dragon's damage is from 2-20
 	    cout<<"The dragon attacks and will do "<<dragonAttack<<" damage."<<endl;
-        cout<<"You have "<<player.health<<" life left."<<endl;
+        cout<<"You have "<<player->health<<" life left."<<endl;
 	    cout<<"Do you want to defend (Y/N)? "<<"You have "<<playerDefends<<" left."<<endl;
 	    cin>>playerDChoice;
 
 	    if(playerDChoice=="Y")
         {
             playerDefends--;
-            playerDefense=player.defend();
-            player.health=player.health-dragonAttack+playerDefence<<endl;
+            playerDefense=player->defend();
+            player->health=player->health-dragonAttack+playerDefense;
             cout<<"The dragon attacked and did "<<dragonAttack<<" damage, but you defended "<<playerDefends<<" damage"<<endl;
-            cout<<"You have "<<player.health<<" life left."<<endl;
+            cout<<"You have "<<player->health<<" life left."<<endl;
         }
 	    else
         {
-            player.health=player.health-dragonAttack;
+            player->health=player->health-dragonAttack;
             cout<<"The dragon attacked and did "<<dragonAttack<<" damage"<<endl;
-            cout<<"You have "<<player.health<<" life left."<<endl;
+            cout<<"You have "<<player->health<<" life left."<<endl;
         }
 
 	    cout<<"Do you want to attack (Y/N)?"<<endl;
@@ -327,12 +327,13 @@ bool GameBoard::bossEncounter() //player is the Player
 
 	    if(playerAChoice=="Y")
         {
-            playerAttack=player.attack();
-            dragonHealth=dragonHealth-playerAttack();
-            cout<<"You attacked the dragon and did "<<playerAttack<<"damage."<<endl;
+            localPlayerAttack=player->attack();
+            dragonHealth=dragonHealth-player->attack();
+            cout<<"You attacked the dragon and did "<<localPlayerAttack<<"damage."<<endl;
             cout<<"The dragon has "<<dragonHealth<<" life left."<<endl;
         }
 
+	}
 }
 
 
