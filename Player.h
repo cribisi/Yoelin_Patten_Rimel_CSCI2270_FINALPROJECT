@@ -26,7 +26,13 @@ class Player{
 		int  attack();//DONE
 		int  defend();//DONE
 		Node* current;
-        	int health;
+        int health;
+
+        //Begin sunday changes
+        bool crystals[4]={false,false,false,false};
+
+
+
 
 
 
