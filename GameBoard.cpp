@@ -315,50 +315,55 @@ bool GameBoard::playerHasWonBossEncounter() //player is the Player
 
 	    if(playerDChoice=="Y")
         {
+			 playerDefends--;
+            playerDefense=player->defend();
+            player->health=player->health-dragonAttack+playerDefense;
 			cout << "\033[2J\033[1;1H";
 		cout<<"Level = "<<player->getLevel()<<endl;
 		cout<<"Health = "<<player->health<<endl;
 		cout<<"Boss Health = "<<dragonHealth<<endl;
-            playerDefends--;
-            playerDefense=player->defend();
-            player->health=player->health-dragonAttack+playerDefense;
+           
             cout<<"The dragon attacked and did "<<dragonAttack<<" damage, but you defended "<<playerDefense<<" damage"<<endl;
             cout<<"You have "<<player->health<<" life left."<<endl;
 	    if(player->health <= 0){
 	    	return false;
 	    }
         }
-	    else
+	    else if (playerDChoice == "N")
         {
+			player->health=player->health-dragonAttack;
 			cout << "\033[2J\033[1;1H";
 		cout<<"Level = "<<player->getLevel()<<endl;
 		cout<<"Health = "<<player->health<<endl;
 		cout<<"Boss Health = "<<dragonHealth<<endl;
-            player->health=player->health-dragonAttack;
             cout<<"The dragon attacked and did "<<dragonAttack<<" damage"<<endl;
             cout<<"You have "<<player->health<<" life left."<<endl;
-        }
+		}
+		else{
+			cout << " COMMAND NOT VALID" << endl;
+		}
 
 	    cout<<"Do you want to attack (Y/N)?"<<endl;
 	    cin>>playerAChoice;
 
 	    if(playerAChoice=="Y")
         {
+			localPlayerAttack=player->attack();
+            dragonHealth=dragonHealth-player->attack();
 			cout << "\033[2J\033[1;1H";
 		cout<<"Level = "<<player->getLevel()<<endl;
 		cout<<"Health = "<<player->health<<endl;
 		cout<<"Boss Health = "<<dragonHealth<<endl;
-            localPlayerAttack=player->attack();
-            dragonHealth=dragonHealth-player->attack();
             cout<<"You attacked the dragon and did "<<localPlayerAttack<<"damage."<<endl;
             cout<<"The dragon has "<<dragonHealth<<" life left."<<endl;
+		}
 	    if(dragonHealth<=0)
 	    {
 	    	return true;
         
 	    }
 
-	}
+	
 	
 }
 }
