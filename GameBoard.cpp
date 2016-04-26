@@ -51,7 +51,7 @@ void GameBoard::explicitInitialization()
     start->left = Mountains;
     start->right  = Lake;
 
-    Mountains->nodeName = "Mountiains";
+    Mountains->nodeName = "Mountains";
     Mountains->description = "You have stumbled upon an array of mountains, where will your next move be......? ";
     Mountains->treasure = "None";
     Mountains->parent=head;
@@ -86,15 +86,15 @@ void GameBoard::explicitInitialization()
     LavaPools->left=NULL;
     LavaPools->right=SilverCrystalRequired;
 
-    SilverCrystalRequired->nodeName = "Trippy super cool awsome room... I guesss";
-    SilverCrystalRequired->description = "Phish is sickkkkk";
+    SilverCrystalRequired->nodeName = "Diamond Pit";
+    SilverCrystalRequired->description = "These diamonds cannot be mined...but you can continue on your journey!";
     SilverCrystalRequired->treasure = "None";
     SilverCrystalRequired->parent=LavaPools;
     SilverCrystalRequired->left=NULL;
     SilverCrystalRequired->right=RedCrystalRoom;
 
     RedCrystalRoom->nodeName = "Red Crystal Room";
-    RedCrystalRoom->description = "Hmm...this room has a strange red glow...\nAfter hours of searching you find a red crystal...this could be useful at some point";
+    RedCrystalRoom->description = "Hmm...this room has a strange red glow...\n After hours of searching you find a red crystal...this could be useful at some point";
     RedCrystalRoom->treasure = "R";
     RedCrystalRoom->parent=SilverCrystalRequired;
     RedCrystalRoom->left=NULL;
@@ -105,7 +105,7 @@ void GameBoard::explicitInitialization()
     Library->treasure = "None";
     Library->parent=Dungeon;
     Library->left=Book1;
-    Library->left=Book2;
+    Library->right=Book2;
 
     EmeraldMine->nodeName = "Emerald Mine";
     EmeraldMine->description = "You have entered a massive Emerald Mine...shiny";
@@ -136,7 +136,7 @@ void GameBoard::explicitInitialization()
     ClimbMountain3->right=SilverCrystalRoom;
 
     Book1->nodeName="Book 1";
-    Book1->description="The book reads \"In order to facce the dragon, do not allow yourself to be nullified\"";
+    Book1->description="The book reads \"In order to face the dragon, do not allow yourself to be nullified\"";
     Book1->treasure="None";
     Book1->parent=Library;
     Book1->left=NULL;
@@ -150,21 +150,21 @@ void GameBoard::explicitInitialization()
     Book2->right=NULL;
 
     BlueCrystalRoom->nodeName="Blue Crystal Room";
-    BlueCrystalRoom->description="This room has a strange blue tint.../nOh look! You found a blue crystal!";
+    BlueCrystalRoom->description="This room has a strange blue tint...\nOh look! You found a blue crystal!";
     BlueCrystalRoom->treasure="B";
     BlueCrystalRoom->parent=Lake;
     BlueCrystalRoom->left=NULL;
     BlueCrystalRoom->right=NULL;
 
     GreenCrystalRoom->nodeName="Green Crystal Room";
-    GreenCrystalRoom->description="This room has a strange green aura.../nIt must be that green crystal!";
+    GreenCrystalRoom->description="This room has a strange green aura...\nIt must be that green crystal!";
     GreenCrystalRoom->treasure="G";
     GreenCrystalRoom->parent=EmeraldMine;
     GreenCrystalRoom->left=NULL;
     GreenCrystalRoom->right=NULL;
 
     SilverCrystalRoom->nodeName="Silver Crystal Room";
-    SilverCrystalRoom->description="This room is really really shiny.../nShiny object! You found the silver crystal";
+    SilverCrystalRoom->description="This room is really really shiny...\nShiny object! You found the silver crystal";
     SilverCrystalRoom->treasure="S";
     SilverCrystalRoom->parent=ClimbMountain3;
     SilverCrystalRoom->left=NULL;
@@ -290,11 +290,23 @@ bool GameBoard::playerHasWonBossEncounter() //player is the Player
 	string playerAChoice;
     cout << "\033[2J\033[1;1H";
     cout<<"==============================="<<endl;
+    cout<<endl;
+    cout<<endl;
     cout<<"A dragon appears before you. Fight for your life"<<endl;
-
-
+    cout<<endl;
+    cout<<"Press any key to continue"<<endl;
+    cout<<endl;
+    cout<<endl;
+    cout<<"==============================="<<endl;
+    string key;
+    cin>>key;
+	
 	while(player->health >= 0 && dragonHealth >= 0)
 	{
+		cout << "\033[2J\033[1;1H";
+		cout<<"Level = "<<player->getLevel()<<endl;
+		cout<<"Health = "<<player->health<<endl;
+		cout<<"Boss Health = "<<dragonHealth<<endl;
 	    dragonAttack=rand()%10 + 10; //Dragon's damage is from 10-19
 	    cout<<"The dragon attacks and will do "<<dragonAttack<<" damage."<<endl;
         cout<<"You have "<<player->health<<" life left."<<endl;
@@ -303,6 +315,10 @@ bool GameBoard::playerHasWonBossEncounter() //player is the Player
 
 	    if(playerDChoice=="Y")
         {
+			cout << "\033[2J\033[1;1H";
+		cout<<"Level = "<<player->getLevel()<<endl;
+		cout<<"Health = "<<player->health<<endl;
+		cout<<"Boss Health = "<<dragonHealth<<endl;
             playerDefends--;
             playerDefense=player->defend();
             player->health=player->health-dragonAttack+playerDefense;
@@ -314,6 +330,10 @@ bool GameBoard::playerHasWonBossEncounter() //player is the Player
         }
 	    else
         {
+			cout << "\033[2J\033[1;1H";
+		cout<<"Level = "<<player->getLevel()<<endl;
+		cout<<"Health = "<<player->health<<endl;
+		cout<<"Boss Health = "<<dragonHealth<<endl;
             player->health=player->health-dragonAttack;
             cout<<"The dragon attacked and did "<<dragonAttack<<" damage"<<endl;
             cout<<"You have "<<player->health<<" life left."<<endl;
@@ -324,6 +344,10 @@ bool GameBoard::playerHasWonBossEncounter() //player is the Player
 
 	    if(playerAChoice=="Y")
         {
+			cout << "\033[2J\033[1;1H";
+		cout<<"Level = "<<player->getLevel()<<endl;
+		cout<<"Health = "<<player->health<<endl;
+		cout<<"Boss Health = "<<dragonHealth<<endl;
             localPlayerAttack=player->attack();
             dragonHealth=dragonHealth-player->attack();
             cout<<"You attacked the dragon and did "<<localPlayerAttack<<"damage."<<endl;
