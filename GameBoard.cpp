@@ -65,29 +65,29 @@ void GameBoard::explicitInitialization()
     Lake->left=NULL;
     Lake->right=BlueCrystalRoom;
 
-	Cave->nodeName = "Cave";
-	Cave->description = "You successfully entered the cave...where will you go next?";
-	Cave->treasure = "None";
+    Cave->nodeName = "Cave";
+    Cave->description = "You successfully entered the cave...where will you go next?";
+    Cave->treasure = "None";
     Cave->parent=Mountains;
     Cave->left=Dungeon;
     Cave->right=EmeraldMine;
 
-	Dungeon->nodeName = "Dungeon";
-	Dungeon->description = "Welcome to the dungeon! Be careful where you make your next turn...";
-	Dungeon->treasure = "None";
+    Dungeon->nodeName = "Dungeon";
+    Dungeon->description = "Welcome to the dungeon! Be careful where you make your next turn...";
+    Dungeon->treasure = "None";
     Dungeon->parent=Cave;
     Dungeon->left=LavaPools;
     Dungeon->right=Library;
 
     LavaPools->nodeName = "Lava Pools";
-	LavaPools->description = "You have now entered the lava pools. Fire resistant footwear not included";
-	LavaPools->treasure = "None";
+    LavaPools->description = "You have now entered the lava pools. Fire resistant footwear not included";
+    LavaPools->treasure = "None";
     LavaPools->parent=Dungeon;
     LavaPools->left=NULL;
     LavaPools->right=SilverCrystalRequired;
 
-    SilverCrystalRequired->nodeName = "Silver Crystal Required";
-    SilverCrystalRequired->description = "In order to open this door, you must have a silver crystal";
+    SilverCrystalRequired->nodeName = "Trippy super cool awsome room... I guesss";
+    SilverCrystalRequired->description = "Phish is sickkkkk";
     SilverCrystalRequired->treasure = "None";
     SilverCrystalRequired->parent=LavaPools;
     SilverCrystalRequired->left=NULL;
@@ -174,50 +174,6 @@ void GameBoard::explicitInitialization()
 
 
 
-//A function that John Van Patten made, will possibly be used in the future to search for nodes in the game board
-/*void GameBoard::createNode(node startNode,std::string nameS, std::string parentS, std::string LOR) //This function allows the programmer to create custom gameboards
-{
-     node *temp;
-     temp=startNode;
-
-    if(temp->left->name!=parentS)
-    {
-        createNode(temp->left,nameS,parentS,LOR)
-    }
-    if(temp->left->name==parentS)
-    {
-        temp=temp->left;
-        node *addNode=new node;
-        addNode->nodeName=nameS;
-        if(LOR=="L")
-        {
-            temp->left=addNode;
-        }
-        else
-        {
-
-        }
-    }
-    if(temp->right->name!=parentS)
-    {
-        createNode(temp->right,nameS,parentS,LOR)
-    }
-    if(temp->right->name==parentS)
-    {
-        temp=temp->right;
-        if(LOR=="L")
-        {
-
-        }
-        else
-        {
-
-        }
-    }
-
-
- }*/
-
  void GameBoard::traverse(){
 
 	  string direction;	  
@@ -243,7 +199,7 @@ void GameBoard::explicitInitialization()
 		//========================================
 	  }
 		
-				
+	  up:			
 	  cout << "player level: " << player->getLevel() << endl;
 	  cout<<"==============================="<<endl;
 	  cout<<endl;
@@ -277,8 +233,9 @@ void GameBoard::explicitInitialization()
 
 		}
 		else{
-			cout<<"This way is locked."<<endl;
-			return;
+			cout << "\033[2J\033[1;1H";//clear screen
+			cout<<"THE LEFT(L) DOOR WAY IS LOCKED !!!!!!!!!!!"<<endl;
+			goto up;
 		}
 	  }
 		
@@ -290,8 +247,9 @@ void GameBoard::explicitInitialization()
 
 		}
 		  else{
-			cout<<"This way is locked."<<endl;
-			return;
+			cout << "\033[2J\033[1;1H";//clear screen
+			cout<<"THE RIGHT(R) DOOR IS LOCKED !!!!!!!!!!!"<<endl;
+			goto up;
 		}
 	  }
 	
@@ -303,8 +261,9 @@ void GameBoard::explicitInitialization()
 
 		  }
 		  else{
-			cout<<"This way is locked."<<endl;
-			return;
+			cout << "\033[2J\033[1;1H";//clear screen
+			cout<<"THE UPPER(U) DOOR IS LOCKED !!!!!!!!!!!"<<endl;
+			goto up;
 
 		   }
 	  }

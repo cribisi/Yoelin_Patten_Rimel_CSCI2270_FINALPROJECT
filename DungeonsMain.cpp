@@ -39,6 +39,8 @@ int main()
     GameBoard game;
     string input;
 
+    cout << "\033[2J\033[1;1H";//clear screen
+
     startMenu(input);
 
     cout << "\033[2J\033[1;1H";//clear screen
