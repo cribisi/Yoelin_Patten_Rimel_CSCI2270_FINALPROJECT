@@ -28,7 +28,7 @@ void startMenu(string& input){
     cout<<endl;
 
     cin.clear();
-    getline(cin,input);	
+    getline(cin,input);
 
 }
 
@@ -45,28 +45,28 @@ int main()
 
     cout << "\033[2J\033[1;1H";//clear screen
 
-	
+
     if(input == "START"){
 
 	  while(!game.player->hasAllCrystals()){//WORKING
-	    	
+
 		game.traverse();
-	    
+
 	  }
- 
+
 	if(game.playerHasWonBossEncounter()){
 
 		cout << "\033[2J\033[1;1H";//clear screen
 		cout << " WON THE GAME " << endl;
-	
+
 	}
     	else{
 		cout << "\033[2J\033[1;1H";//clear screen
-		cout << " you suck " << endl;
-	
-	}	
-    
-    
+		cout << " LOST THE GAME " << endl;
+
+	}
+
+
     }
 
     cout<<"Thank you for playing! Goodbye!"<<endl;
