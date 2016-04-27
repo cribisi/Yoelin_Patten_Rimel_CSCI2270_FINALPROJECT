@@ -67,9 +67,9 @@ int main()
 	}
 
 
-    }
+
 
     cout<<"Thank you for playing! Goodbye!"<<endl;
 
+    }
 }
-

@@ -176,8 +176,8 @@ void GameBoard::explicitInitialization()
 
  void GameBoard::traverse(){
 
-	  string direction;	  
-		
+	  string direction;
+
 	  //update exp and pick up crystal
 	  if(player->current->visited == false){
 		  player->current->visited = true;
@@ -198,8 +198,8 @@ void GameBoard::explicitInitialization()
 		  }
 		//========================================
 	  }
-		
-	  up:			
+
+	  up:
 	  cout << "player level: " << player->getLevel() << endl;
 	  cout<<"==============================="<<endl;
 	  cout<<endl;
@@ -218,7 +218,7 @@ void GameBoard::explicitInitialization()
 	  cout << endl;
 
 
-	  
+
 	  //Checking for correct input
 	  while(direction!="L" && direction!="R" && direction!="U"){
 		  cout<<"Enter L for left, R for right or U for up"<<endl;
@@ -238,7 +238,7 @@ void GameBoard::explicitInitialization()
 			goto up;
 		}
 	  }
-		
+
 	  //move right
 	  else if(direction == "R"){
 		  if(player->current->right!=NULL){
@@ -252,7 +252,7 @@ void GameBoard::explicitInitialization()
 			goto up;
 		}
 	  }
-	
+
 	  //move up
 	  else if(direction == "U"){
 		  if(player->current->parent != NULL){
@@ -300,7 +300,7 @@ bool GameBoard::playerHasWonBossEncounter() //player is the Player
     cout<<"==============================="<<endl;
     string key;
     cin>>key;
-	
+
 	while(player->health >= 0 && dragonHealth >= 0)
 	{
 		cout << "\033[2J\033[1;1H";
@@ -313,7 +313,7 @@ bool GameBoard::playerHasWonBossEncounter() //player is the Player
 	    cout<<"Do you want to defend (Y/N)? "<<"You have "<<playerDefends<<" left."<<endl;
 	    cin>>playerDChoice;
 
-	    if(playerDChoice=="Y")
+	    if(playerDChoice=="Y" && playerDefends>0) /*Editing here to implement defense counters*/
         {
 			 playerDefends--;
             playerDefense=player->defend();
@@ -322,14 +322,14 @@ bool GameBoard::playerHasWonBossEncounter() //player is the Player
 		cout<<"Level = "<<player->getLevel()<<endl;
 		cout<<"Health = "<<player->health<<endl;
 		cout<<"Boss Health = "<<dragonHealth<<endl;
-           
+
             cout<<"The dragon attacked and did "<<dragonAttack<<" damage, but you defended "<<playerDefense<<" damage"<<endl;
             cout<<"You have "<<player->health<<" life left."<<endl;
 	    if(player->health <= 0){
 	    	return false;
 	    }
         }
-	    else if (playerDChoice == "N")
+	    else if (playerDChoice == "N" || playerDChoice=="Y" && playerDefends<=0)
         {
 			player->health=player->health-dragonAttack;
 			cout << "\033[2J\033[1;1H";
@@ -360,12 +360,20 @@ bool GameBoard::playerHasWonBossEncounter() //player is the Player
 	    if(dragonHealth<=0)
 	    {
 	    	return true;
-        
+
 	    }
 
-	
-	
+
+
 }
+    if(player->health<=0)
+    {
+        return false;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 
