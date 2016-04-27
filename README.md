@@ -46,9 +46,8 @@ No external dependencies required. Only standard C++ dependencies used.
 System Requirements
 --------------------
 
-Virtual Box as provided by CSCI2270. 
-
-
+none, can work on any Operating System
+ 
 ----------------
 Open issues/bugs
 ----------------
