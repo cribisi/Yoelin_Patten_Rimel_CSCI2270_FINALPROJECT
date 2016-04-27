@@ -3,6 +3,12 @@
 # Bryan Yoelin
 # David Rimel
 
+@@@@@@@@@IMPORTANT NOTE@@@@@@@@@@@@@@@@@@@@@@@IMPORTANT NOTE@@@@@@@@@@@@@@@@@@@@@@@IMPORTANT NOTE@@@@@@@@@@@@@@@@@@@@@@@IMPORTANT NOTE@@@@@@@@@@@@@@
+-This program has problems running in code blocks or any other IDE. Please make in the terminal and also run in the terminal (instrucitons below)
+-If you want to use IDE make sure it is compiling using our make file
+-Use the map.jpg file to quickly traverse through the gameboard for debugging purposes. Ideally the player would not have this. 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 
 ----------------
 Project Summary:
